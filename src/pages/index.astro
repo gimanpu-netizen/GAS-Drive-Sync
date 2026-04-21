@@ -1,0 +1,62 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<!doctype html>
+<html lang="ja">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body class="antialiased min-h-screen flex flex-col items-center">
+		<Header />
+		
+		<main class="w-full max-w-5xl mx-auto px-4 py-12 flex-1">
+			
+			<section class="mb-12 text-center my-16">
+				<h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 text-white drop-shadow-md">
+					Autonomous Blog
+				</h1>
+				<p class="text-xl text-gray-300 font-light max-w-2xl mx-auto">
+					AI Agents fully managing content, visuals, and deployment via GitHub and Cloudflare Pages.
+				</p>
+			</section>
+
+			<!-- Bento Grid Layout -->
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				{
+					posts.map((post, index) => (
+						<article class={`bento-item flex flex-col ${index === 0 ? 'md:col-span-2 lg:col-span-2' : ''}`}>
+							<a href={`/blog/${post.slug}/`} class="block group relative overflow-hidden rounded-xl mb-4 h-48 md:h-64">
+								<img 
+									src={post.data.heroImage || '/placeholder.svg'} 
+									alt="" 
+									class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+								/>
+								<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+							</a>
+							<div class="flex flex-col flex-1">
+								<h2 class="text-2xl font-bold mb-2 text-white">
+									<a href={`/blog/${post.slug}/`} class="hover:text-blue-400 transition-colors">
+										{post.data.title}
+									</a>
+								</h2>
+								<p class="text-sm text-gray-400 mb-4">{post.data.pubDate.toLocaleDateString('ja-JP')}</p>
+								<p class="text-gray-300 font-light text-sm flex-1">{post.data.description}</p>
+							</div>
+						</article>
+					))
+				}
+			</div>
+			
+		</main>
+		<Footer />
+	</body>
+</html>

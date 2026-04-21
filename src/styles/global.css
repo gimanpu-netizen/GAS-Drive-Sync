@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-base: #0f1115;
+  --color-accent: #3b82f6;
+}
+
+body {
+  background-color: var(--color-bg-base);
+  color: #f3f4f6;
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(147, 51, 234, 0.15), transparent 25%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Bento Grid & Glassmorphism Utilities */
+.glass-panel {
+  @apply bg-white/5 border border-white/10 backdrop-blur-md shadow-xl;
+}
+
+.bento-item {
+  @apply glass-panel rounded-2xl p-6 transition-all duration-300;
+}
+
+.bento-item:hover {
+  @apply bg-white/10 -translate-y-1 shadow-2xl;
+}
+
+.prose h1, .prose h2, .prose h3 {
+  @apply text-white font-bold mb-4;
+}
+
+.prose p {
+  @apply text-gray-300 leading-relaxed mb-4;
+}
+
+.prose a {
+  @apply text-blue-400 hover:text-blue-300 transition-colors;
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
