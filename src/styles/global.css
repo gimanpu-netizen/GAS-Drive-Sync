@@ -20,8 +20,8 @@ img {
   --bg-2:        #0f1012;
   --bg-card:     #111114;
   --fg:          #f0ede8;
-  --fg-muted:    #7a7880;
-  --fg-dim:      #4a4850;
+  --fg-muted:    #b0adb5;
+  --fg-dim:      #686570;
   --accent:      #3b82f6;
   --accent-soft: rgba(59,130,246,0.12);
   --gold:        #c9a84c;
@@ -457,6 +457,7 @@ body {
   font-size: 15px;
   line-height: 1.9;
   color: var(--fg-muted);
+  font-weight: 400;
 }
 .prose p { margin-bottom: 28px; }
 .prose h2 {
