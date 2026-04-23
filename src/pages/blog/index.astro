@@ -1,114 +1,84 @@
 ---
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { SITE_TITLE } from '../../consts';
 
 const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
+<html lang="ja">
+  <head>
+    <BaseHead title={`Blog — ${SITE_TITLE}`} description="ケンジのブログ記事一覧。AI・自動化・生活設計・マレーシア移住など。" />
+  </head>
+
+  <body class="fade-in">
+    <Header />
+
+    <main class="container-wide" style="padding-top:48px;padding-bottom:80px;">
+      <div class="section-label">すべての記事</div>
+
+      <div class="mag-grid">
+        {posts.length === 0 && (
+          <p style="grid-column:1/-1;padding:40px;color:var(--fg-dim);font-size:13px;">
+            記事は準備中です。
+          </p>
+        )}
+        {posts.length > 0 && (
+          <>
+            <!-- Large card: first post -->
+            <a class="mag-card large" href={`/blog/${posts[0].id}/`}>
+              <div class="mag-card-img-wrap" style="flex:1">
+                {posts[0].data.heroImage
+                  ? <img class="mag-card-img"
+                      src={typeof posts[0].data.heroImage === 'string' ? posts[0].data.heroImage : (posts[0].data.heroImage as any).src}
+                      alt={posts[0].data.title} />
+                  : <div style="width:100%;height:100%;background:linear-gradient(135deg,rgba(59,130,246,0.2),rgba(201,168,76,0.1));"></div>
+                }
+              </div>
+              <div class="mag-card-body">
+                <div class="card-category">{posts[0].data.category ?? posts[0].data.tags?.[0] ?? 'Blog'}</div>
+                <h2 class="card-title">{posts[0].data.title}</h2>
+                <p class="card-desc">{posts[0].data.description}</p>
+                <div class="card-meta">
+                  <span>{posts[0].data.pubDate.toLocaleDateString('ja-JP')}</span>
+                  {posts[0].data.readTime && <span>読了 {posts[0].data.readTime} 分</span>}
+                </div>
+              </div>
+            </a>
+            <!-- Remaining posts as small cards -->
+            {posts.slice(1).map((post) => (
+              <a class="mag-card" href={`/blog/${post.id}/`}>
+                <div class="mag-card-img-wrap">
+                  {post.data.heroImage
+                    ? <img class="mag-card-img"
+                        src={typeof post.data.heroImage === 'string' ? post.data.heroImage : (post.data.heroImage as any).src}
+                        alt={post.data.title} />
+                    : <div style="width:100%;height:100%;background:linear-gradient(135deg,rgba(59,130,246,0.15),rgba(201,168,76,0.08));"></div>
+                  }
+                </div>
+                <div class="mag-card-body">
+                  <div class="card-category">{post.data.category ?? post.data.tags?.[0] ?? 'Blog'}</div>
+                  <h2 class="card-title">{post.data.title}</h2>
+                  <div class="card-meta">
+                    <span>{post.data.pubDate.toLocaleDateString('ja-JP')}</span>
+                    {post.data.readTime && <span>読了 {post.data.readTime} 分</span>}
+                  </div>
+                  <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;">
+                    {post.data.tags?.map((t: string) => <span class="card-tag">#{t}</span>)}
+                  </div>
+                </div>
+              </a>
+            ))}
+          </>
+        )}
+      </div>
+    </main>
+
+    <Footer />
+  </body>
 </html>

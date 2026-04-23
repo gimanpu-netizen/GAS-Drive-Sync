@@ -2,9 +2,10 @@
 title: "副業を「事業」に変える設計術：創業計画書で生存率を高める方法"
 description: "副業が「趣味」で終わる人と「事業」になる人の差はどこにあるのか？日本政策金融公庫の創業計画書を最強の経営フレームワークとして活用し、論理的に自由を設計する具体的なステップをケンジが解説します。"
 pubDate: "2026-04-23"
+category: "経営戦略"
 tags: ["副業", "創業計画書", "資産構築", "働き方改革"]
 heroImage: "./thumbnail.png"
-slug: "side-hustle-business-strategy"
+readTime: "8"
 draft: false
 ---
 

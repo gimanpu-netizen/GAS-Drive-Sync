@@ -3,84 +3,82 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, category, tags, readTime } = Astro.props;
+
+const heroSrc = heroImage
+  ? (typeof heroImage === 'string' ? heroImage : (heroImage as any).src)
+  : null;
 ---
 
-<html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
+<!doctype html>
+<html lang="ja">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
+  <body>
+    <Header />
+
+    <div class="article-page fade-in">
+      {heroSrc && (
+        <img class="article-hero-img" src={heroSrc} alt={title} />
+      )}
+
+      <div class="article-content">
+        <a class="back-btn" href="/">← 一覧に戻る</a>
+
+        <div class="article-header">
+          <div class="article-category">
+            {category ?? tags?.[0] ?? 'Blog'}
+          </div>
+          <h1 class="article-title">{title}</h1>
+          {description && <p class="article-desc">{description}</p>}
+          <div class="article-byline">
+            <div class="byline-avatar">K</div>
+            <div>
+              <div class="byline-name">ケンジ</div>
+              <div style="margin-top:2px;font-size:11px;color:var(--fg-dim);">マイクロ法人代表 / AIワークフロー・コンサルタント</div>
+            </div>
+            <span class="byline-sep"></span>
+            <span><FormattedDate date={pubDate} /></span>
+            {updatedDate && (
+              <>
+                <span class="byline-sep"></span>
+                <span style="font-style:italic;">更新: <FormattedDate date={updatedDate} /></span>
+              </>
+            )}
+            {readTime && (
+              <>
+                <span class="byline-sep"></span>
+                <span>読了 {readTime} 分</span>
+              </>
+            )}
+          </div>
+        </div>
+
+        <div class="prose">
+          <slot />
+        </div>
+
+        <!-- Author Card -->
+        <div class="article-author-card">
+          <div class="author-avatar-lg">K</div>
+          <div>
+            <div class="author-card-name">ケンジ</div>
+            <div class="author-card-role">マイクロ法人代表 / AIワークフロー・コンサルタント</div>
+            <p class="author-card-bio">
+              地方の製造業で25年間、生産管理と事務効率化に従事した後、独立。現在はマレーシア・クアラルンプールを拠点に、AIエージェントを活用したマイクロ法人を運営。「真面目に働いているのに報われない」層に向け、自動化×生活設計の両面から自由への脱出ルートを発信。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <Footer />
+  </body>
 </html>

@@ -1,63 +1,81 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+<!doctype html>
+<html lang="ja">
+  <head>
+    <BaseHead title={`About — ${SITE_TITLE}`} description="マレーシア・KL拠点のマイクロ法人代表。AI×自動化×生活設計で自由を設計するケンジのプロフィール。" />
+  </head>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+  <body class="fade-in">
+    <Header />
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+    <!-- About Hero -->
+    <div class="about-hero">
+      <div class="about-hero-bg"></div>
+      <div class="container" style="width:100%">
+        <div class="about-hero-inner">
+          <div>
+            <div class="about-name">ケンジ</div>
+            <div class="about-name-en">Kenji — AI Workflow Consultant</div>
+          </div>
+          <blockquote class="about-tagline">
+            「自由は、根性ではなく<br />『設計』で手に入れる。」
+          </blockquote>
+        </div>
+      </div>
+    </div>
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+    <!-- About Body -->
+    <div class="container">
+      <div class="about-body">
+        <div class="about-grid">
+          <div>
+            <div class="about-section-title">プロフィール</div>
+            <div class="about-text">
+              <p>地方の製造業で<strong>25年間</strong>、生産管理と事務効率化に従事した後、独立。終わらない手書き伝票やExcelへの手入力に追われる日々の中、独学でVBA・AIを習得し、属人化していた業務を全て標準化して組織を再生させた実績を持ちます。</p>
+              <p>現在は<strong>マレーシア・クアラルンプール</strong>を拠点に、AIエージェントをフル活用したマイクロ法人を運営。実務の8割を自動化し、自身は「意思決定」と「発信」に集中するライフスタイルを実現。</p>
+              <p>KLCCエリアの5つ星ホテルを拠点とする身軽な生活は、日本都市部の一般的な生活費と大差ない。これはコストパフォーマンスの極致です。</p>
+            </div>
+          </div>
+          <div>
+            <div class="about-section-title">発信のスタンス</div>
+            <div class="about-text">
+              <p>「成功者の自慢」ではなく、<strong>「再現性のあるシステム」</strong>の解説。製造業の現場で泥臭く働いていた私にできたのですから、仕組みさえ作れば誰にでも再現できます。</p>
+              <p>常に「日本でのサラリーマン時代のコスト」と比較し、現在の生活がいかに合理的であるかを数字で示します。感情や精神論ではなく「数字」と「ロジック」で人生を最適化する徹底した合理主義が信条です。</p>
+              <p>AI（LLM）・自動化・生活設計の三本柱で、<strong>真面目に働いているのに報われない層</strong>へ、自由への脱出ルートを共有します。</p>
+            </div>
+          </div>
+        </div>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+        <div class="about-stats">
+          <div class="stat-item">
+            <span class="stat-value">25</span>
+            <span class="stat-label">製造業キャリア（年）</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">8割</span>
+            <span class="stat-label">業務自動化率</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">KL</span>
+            <span class="stat-label">現在の拠点</span>
+          </div>
+        </div>
+
+        <div class="philosophy">
+          <div class="philosophy-quote">
+            「大事なのは<br />『いくら稼ぐか』より<br />『どう仕組みを作るか』です。」
+          </div>
+          <div class="philosophy-attr">— ケンジ / KENJI</div>
+        </div>
+      </div>
+    </div>
+
+    <Footer />
+  </body>
+</html>

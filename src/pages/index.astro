@@ -6,57 +6,124 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+const featured = posts[0];
+const rest = posts.slice(1);
+
+const categories = ['すべて', '経営戦略', 'ライフスタイル', 'AI・テクノロジー', '資産構築', 'マレーシア'];
 ---
 
 <!doctype html>
 <html lang="ja">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body class="antialiased min-h-screen flex flex-col items-center">
-		<Header />
-		
-		<main class="w-full max-w-5xl mx-auto px-4 py-12 flex-1">
-			
-			<section class="mb-12 text-center my-16">
-				<h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 text-white drop-shadow-md">
-					Autonomous Blog
-				</h1>
-				<p class="text-xl text-gray-300 font-light max-w-2xl mx-auto">
-					AI Agents fully managing content, visuals, and deployment via GitHub and Cloudflare Pages.
-				</p>
-			</section>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="fade-in">
+    <Header />
 
-			<!-- Bento Grid Layout -->
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-				{
-					posts.map((post, index) => (
-						<article class={`bento-item flex flex-col ${index === 0 ? 'md:col-span-2 lg:col-span-2' : ''}`}>
-							<a href={`/blog/${post.id}/`} class="block group relative overflow-hidden rounded-xl mb-4 h-48 md:h-64">
-								<img 
-									src={post.data.heroImage ? post.data.heroImage.src : '/placeholder.svg'} 
-									alt="" 
-									class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-								/>
-								<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-							</a>
-							<div class="flex flex-col flex-1">
-								<h2 class="text-2xl font-bold mb-2 text-white">
-									<a href={`/blog/${post.id}/`} class="hover:text-blue-400 transition-colors">
-										{post.data.title}
-									</a>
-								</h2>
-								<p class="text-sm text-gray-400 mb-4">{post.data.pubDate.toLocaleDateString('ja-JP')}</p>
-								<p class="text-gray-300 font-light text-sm flex-1">{post.data.description}</p>
-							</div>
-						</article>
-					))
-				}
-			</div>
-			
-		</main>
-		<Footer />
-	</body>
+    <main>
+      <!-- Hero: 最新記事 -->
+      {featured && (
+        <div class="container-wide">
+          <a class="hero" href={`/blog/${featured.id}/`}>
+            <div class="hero-text">
+              <div class="hero-category">
+                {featured.data.category ?? featured.data.tags?.[0] ?? 'Blog'}
+              </div>
+              <h1 class="hero-title">{featured.data.title}</h1>
+              <p class="hero-desc">{featured.data.description}</p>
+              <div class="hero-meta">
+                <span>{featured.data.pubDate.toLocaleDateString('ja-JP')}</span>
+                {featured.data.readTime && (
+                  <>
+                    <span class="hero-meta-sep"></span>
+                    <span>読了 {featured.data.readTime} 分</span>
+                  </>
+                )}
+                {featured.data.tags?.map((t: string) => <span>#{t}</span>)}
+              </div>
+              <span class="read-more">続きを読む <span>→</span></span>
+            </div>
+            <div class="hero-img-wrap">
+              {featured.data.heroImage
+                ? <img class="hero-img" src={typeof featured.data.heroImage === 'string' ? featured.data.heroImage : featured.data.heroImage.src} alt={featured.data.title} />
+                : <div style="width:100%;height:100%;background:linear-gradient(135deg,rgba(59,130,246,0.2),rgba(201,168,76,0.1));"></div>
+              }
+              <div class="hero-img-overlay"></div>
+            </div>
+          </a>
+        </div>
+      )}
+
+      <!-- Tag Strip + Grid -->
+      <div class="container-wide">
+        <div class="tag-strip">
+          {categories.map((t, i) => (
+            <span class={`tag-pill${i === 0 ? ' active' : ''}`}>{t}</span>
+          ))}
+        </div>
+
+        {rest.length > 0 && (
+          <>
+            <div class="section-label">最近の記事</div>
+            <div class="mag-grid">
+              <!-- Large card (first of rest) -->
+              {rest[0] && (
+                <a class="mag-card large" href={`/blog/${rest[0].id}/`}>
+                  <div class="mag-card-img-wrap" style="flex:1">
+                    {rest[0].data.heroImage
+                      ? <img class="mag-card-img" src={typeof rest[0].data.heroImage === 'string' ? rest[0].data.heroImage : rest[0].data.heroImage.src} alt={rest[0].data.title} />
+                      : <div style="width:100%;height:100%;background:linear-gradient(135deg,rgba(59,130,246,0.15),rgba(201,168,76,0.08));"></div>
+                    }
+                  </div>
+                  <div class="mag-card-body">
+                    <div class="card-category">{rest[0].data.category ?? rest[0].data.tags?.[0] ?? 'Blog'}</div>
+                    <h2 class="card-title">{rest[0].data.title}</h2>
+                    <p class="card-desc">{rest[0].data.description}</p>
+                    <div class="card-meta">
+                      <span>{rest[0].data.pubDate.toLocaleDateString('ja-JP')}</span>
+                      {rest[0].data.readTime && <span>読了 {rest[0].data.readTime} 分</span>}
+                    </div>
+                  </div>
+                </a>
+              )}
+              <!-- Small cards -->
+              {rest.slice(1, 3).map((post) => (
+                <a class="mag-card" href={`/blog/${post.id}/`}>
+                  <div class="mag-card-img-wrap">
+                    {post.data.heroImage
+                      ? <img class="mag-card-img" src={typeof post.data.heroImage === 'string' ? post.data.heroImage : post.data.heroImage.src} alt={post.data.title} />
+                      : <div style="width:100%;height:100%;background:linear-gradient(135deg,rgba(59,130,246,0.15),rgba(201,168,76,0.08));"></div>
+                    }
+                  </div>
+                  <div class="mag-card-body">
+                    <div class="card-category">{post.data.category ?? post.data.tags?.[0] ?? 'Blog'}</div>
+                    <h2 class="card-title">{post.data.title}</h2>
+                    <div class="card-meta">
+                      <span>{post.data.pubDate.toLocaleDateString('ja-JP')}</span>
+                      {post.data.readTime && <span>読了 {post.data.readTime} 分</span>}
+                    </div>
+                    <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;">
+                      {post.data.tags?.map((t: string) => <span class="card-tag">#{t}</span>)}
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* 記事が1件のみの場合 */}
+        {posts.length === 1 && (
+          <p style="color:var(--fg-dim);font-size:13px;padding:40px 0;">
+            記事は随時追加されます。
+          </p>
+        )}
+      </div>
+    </main>
+
+    <Footer />
+  </body>
 </html>
