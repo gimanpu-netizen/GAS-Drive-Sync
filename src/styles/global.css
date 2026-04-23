@@ -23,7 +23,7 @@ body {
 }
 
 .bento-item {
-  @apply glass-panel rounded-2xl p-6 transition-all duration-300;
+  @apply bg-white/5 border border-white/10 backdrop-blur-md shadow-xl rounded-2xl p-6 transition-all duration-300;
 }
 
 .bento-item:hover {
