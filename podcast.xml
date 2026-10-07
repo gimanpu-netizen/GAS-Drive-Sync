@@ -4,7 +4,7 @@
      xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title><![CDATA[40代からのサバイバル居酒屋放談 〜中年サラリーマンのAI＆生存戦略〜]]></title>
-    <link>https://github.com</link>
+    <link>https://gimanpu-netizen.github.io/GAS-Drive-Sync/</link>
     <language>ja</language>
     <copyright>&#xA9; 2026 タクヤ ＆ ゴロウ (中年サラリーマン応援隊)</copyright>
     <itunes:author>タクヤ ＆ ゴロウ (中年サラリーマン応援隊)</itunes:author>
@@ -12,7 +12,7 @@
     <description><![CDATA[40〜50代の中年サラリーマン必聴！情報オタクのスズキ タクヤ(47)と等身大サラリーマンのタナカ ゴロウ(44)が、最新テック・経済のリアル・お小遣い事情・教育費・健康の悩みを居酒屋感覚で本音トークする15分ポッドキャスト。]]></description>
     <itunes:owner>
       <itunes:name>タクヤ ＆ ゴロウ</itunes:name>
-      <itunes:email>yoshimaai5@gmail.com</itunes:email>
+      <itunes:email>gimanpu@gmail.com</itunes:email>
     </itunes:owner>
     <itunes:explicit>no</itunes:explicit>
     <itunes:image href="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=1400&amp;h=1400&amp;fit=crop" />
@@ -25,8 +25,8 @@
       <description><![CDATA[スズキタクヤ(47)とタナカゴロウ(44)の居酒屋ビジネス放談。中学生の塾代でお小遣い実質2万円台に突入したゴロウと、中間管理職のAI活用法をロジカルに解説するタクヤのリアルなトーク。]]></description>
       <itunes:summary><![CDATA[スズキタクヤ(47)とタナカゴロウ(44)の居酒屋ビジネス放談。中学生の塾代でお小遣い実質2万円台に突入したゴロウと、中間管理職のAI活用法をロジカルに解説するタクヤのリアルなトーク。]]></itunes:summary>
       <pubDate>Wed, 07 Oct 2026 20:00:00 +0000</pubDate>
-      <enclosure url="https://raw.githubusercontent.com/yoshima-ai/sample-assets/main/podcast_sample.mp3" length="5349120" type="audio/mpeg" />
-      <guid isPermaLink="false">podcast-ep-001</guid>
+      <enclosure url="https://gimanpu-netizen.github.io/GAS-Drive-Sync/podcasts/ep01_survival.wav" length="5349164" type="audio/wav" />
+      <guid isPermaLink="true">https://gimanpu-netizen.github.io/GAS-Drive-Sync/podcasts/ep01_survival.wav</guid>
       <itunes:duration>01:51</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
