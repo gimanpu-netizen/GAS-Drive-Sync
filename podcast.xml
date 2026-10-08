@@ -8,8 +8,8 @@
     <language>ja</language>
     <copyright>&#xA9; 2026 タクヤ ＆ ゴロウ (中年サラリーマン応援隊)</copyright>
     <itunes:author>タクヤ ＆ ゴロウ (中年サラリーマン応援隊)</itunes:author>
-    <itunes:summary><![CDATA[40〜50代の中年サラリーマン必聴！情報オタクのスズキ タクヤ(47)と等身大サラリーマンのタナカ ゴロウ(44)が、最新テック・経済のリアル・お小遣い事情・教育費・健康の悩みを居酒屋感覚で本音トークする15分ポッドキャスト。]]></itunes:summary>
-    <description><![CDATA[40〜50代の中年サラリーマン必聴！情報オタクのスズキ タクヤ(47)と等身大サラリーマンのタナカ ゴロウ(44)が、最新テック・経済のリアル・お小遣い事情・教育費・健康の悩みを居酒屋感覚で本音トークする15分ポッドキャスト。]]></description>
+    <itunes:summary><![CDATA[40〜50代の中年サラリーマン必聴！情報オタクのスズキ タクヤ(47)と等身大サラリーマンのタナカ ゴロウ(44)が、最新テック・経済のリアル・お小遣い事情・教育費・健康の悩みを居酒屋感覚で本音トークするポッドキャスト。]]></itunes:summary>
+    <description><![CDATA[40〜50代の中年サラリーマン必聴！情報オタクのスズキ タクヤ(47)と等身大サラリーマンのタナカ ゴロウ(44)が、最新テック・経済のリアル・お小遣い事情・教育費・健康の悩みを居酒屋感覚で本音トークするポッドキャスト。]]></description>
     <itunes:owner>
       <itunes:name>タクヤ ＆ ゴロウ</itunes:name>
       <itunes:email>gimanpu@gmail.com</itunes:email>
@@ -20,14 +20,14 @@
       <itunes:category text="Careers" />
     </itunes:category>
     <item>
-      <title><![CDATA[【15分完全版】副業を「事業」に変える設計術：創業計画書で生存率を高める方法]]></title>
-      <itunes:title><![CDATA[【15分完全版】副業を「事業」に変える設計術：創業計画書で生存率を高める方法]]></itunes:title>
-      <description><![CDATA[【15分完全版】スズキタクヤ(47)とタナカゴロウ(44)の居酒屋ビジネス放談。テーマ: 副業を「事業」に変える設計術：創業計画書で生存率を高める方法。中年のお小遣い・塾代のリアルから、創業計画書による事業化設計、読者お悩み相談室まで徹底討論。]]></description>
-      <itunes:summary><![CDATA[【15分完全版】スズキタクヤ(47)とタナカゴロウ(44)の居酒屋ビジネス放談。テーマ: 副業を「事業」に変える設計術：創業計画書で生存率を高める方法。中年のお小遣い・塾代のリアルから、創業計画書による事業化設計、読者お悩み相談室まで徹底討論。]]></itunes:summary>
-      <pubDate>Thu, 08 Oct 2026 03:28:53 +0000</pubDate>
-      <enclosure url="https://gimanpu-netizen.github.io/GAS-Drive-Sync/podcasts/podcast_long_261008_1218.wav" length="27605804" type="audio/wav" />
-      <guid isPermaLink="true">https://gimanpu-netizen.github.io/GAS-Drive-Sync/podcasts/podcast_long_261008_1218.wav</guid>
-      <itunes:duration>09:35</itunes:duration>
+      <title><![CDATA[【2段構成】副業を「事業」に変える設計術：創業計画書で生存率を高める方法]]></title>
+      <itunes:title><![CDATA[【2段構成】副業を「事業」に変える設計術：創業計画書で生存率を高める方法]]></itunes:title>
+      <description><![CDATA[スズキタクヤ(47)とタナカゴロウ(44)の居酒屋ビジネス放談。テーマ: 副業を「事業」に変える設計術：創業計画書で生存率を高める方法。オープニングの日常ぼやきから、創業計画書による事業化設計・時間の切り売り脱却まで徹底討論。]]></description>
+      <itunes:summary><![CDATA[スズキタクヤ(47)とタナカゴロウ(44)の居酒屋ビジネス放談。テーマ: 副業を「事業」に変える設計術：創業計画書で生存率を高める方法。オープニングの日常ぼやきから、創業計画書による事業化設計・時間の切り売り脱却まで徹底討論。]]></itunes:summary>
+      <pubDate>Thu, 08 Oct 2026 12:48:57 +0000</pubDate>
+      <enclosure url="https://gimanpu-netizen.github.io/GAS-Drive-Sync/podcasts/podcast_2stage_261008_2141.wav" length="25549484" type="audio/wav" />
+      <guid isPermaLink="true">https://gimanpu-netizen.github.io/GAS-Drive-Sync/podcasts/podcast_2stage_261008_2141.wav</guid>
+      <itunes:duration>08:52</itunes:duration>
       <itunes:explicit>no</itunes:explicit>
     </item>
   </channel>
