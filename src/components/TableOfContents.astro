@@ -1,0 +1,85 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+const tocHeadings = headings.filter((h) => h.depth > 1 && h.depth < 4); // Only H2 and H3
+---
+
+{tocHeadings.length > 0 && (
+  <nav class="toc">
+    <div class="toc-title">目次</div>
+    <ul>
+      {tocHeadings.map((heading) => (
+        <li class={`depth-${heading.depth}`}>
+          <a href={`#${heading.slug}`}>{heading.text}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
+
+<style>
+.toc {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin: 32px 0 48px;
+}
+.toc-title {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.toc-title::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 16px;
+  background: var(--accent);
+}
+.toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.toc li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.toc li:last-child {
+  margin-bottom: 0;
+}
+.toc li.depth-2 {
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 12px;
+}
+.toc li.depth-2:first-child {
+  margin-top: 0;
+}
+.toc li.depth-3 {
+  padding-left: 16px;
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+.toc a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition);
+  display: inline-block;
+}
+.toc a:hover {
+  color: var(--accent);
+}
+</style>
